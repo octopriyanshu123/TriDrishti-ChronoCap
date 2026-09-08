@@ -6,13 +6,18 @@
 #include <vector>
 
 #include "i2w/impl.hpp"
-// #include "logger_types.hpp"
 #include "logger_config.hpp"
+#include "topic_registry.hpp"
 
 using logger_msgs::Axis;
 using logger_msgs::Buttons;
 using logger_msgs::Pose2D;
-logger_cfg::LoggerConfig LoggerConfig_;
+using logger_msgs::TopicTraits;
+
+// Loaded once in main(), before any subscriber thread starts.
+// After that point every system only reads from it, so concurrent
+// reads from multiple threads are safe (no concurrent writes).
+logger_cfg::LoggerConfig g_logger_config;
 
 namespace {
 
@@ -57,18 +62,24 @@ class PoseSubscriberSystem final : public i2w::SystemBase {
 
  private:
   i2w::LifecycleResult OnSetup() noexcept override {
+    if (!g_logger_config.IsEnabled<Pose2D>()) {
+      std::printf("[pose]    disabled by config\n");
+      return i2w::Ok();
+    }
+
     i2w::SubscriptionOptions opts;
     opts.plane = plane_;
     opts.reliability = i2w::Reliability::BestEffort;
     opts.queue_depth = 64;
     opts.overflow_policy = i2w::OverflowPolicy::DropOldest;
 
-    auto sub = runtime().subscribe<Pose2D>("pose", &on_pose, opts);
+    auto sub = runtime().subscribe<Pose2D>(TopicTraits<Pose2D>::name, &on_pose, opts);
     if (!sub) {
       return i2w::Fail();
     }
 
     sub_ = std::move(sub.value());
+    std::printf("[pose]    ENABLED\n");
     return i2w::Ok();
   }
 
@@ -87,18 +98,24 @@ class AxisSubscriberSystem final : public i2w::SystemBase {
 
  private:
   i2w::LifecycleResult OnSetup() noexcept override {
+    if (!g_logger_config.IsEnabled<Axis>()) {
+      std::printf("[axis]    disabled by config\n");
+      return i2w::Ok();
+    }
+
     i2w::SubscriptionOptions opts;
     opts.plane = plane_;
     opts.reliability = i2w::Reliability::BestEffort;
     opts.queue_depth = 64;
     opts.overflow_policy = i2w::OverflowPolicy::DropOldest;
 
-    auto sub = runtime().subscribe<Axis>("axis", &on_axis, opts);
+    auto sub = runtime().subscribe<Axis>(TopicTraits<Axis>::name, &on_axis, opts);
     if (!sub) {
       return i2w::Fail();
     }
 
     sub_ = std::move(sub.value());
+    std::printf("[axis]    ENABLED\n");
     return i2w::Ok();
   }
 
@@ -117,19 +134,24 @@ class ButtonsSubscriberSystem final : public i2w::SystemBase {
 
  private:
   i2w::LifecycleResult OnSetup() noexcept override {
-    
+    if (!g_logger_config.IsEnabled<Buttons>()) {
+      std::printf("[buttons] disabled by config\n");
+      return i2w::Ok();
+    }
+
     i2w::SubscriptionOptions opts;
     opts.plane = plane_;
     opts.reliability = i2w::Reliability::BestEffort;
     opts.queue_depth = 64;
     opts.overflow_policy = i2w::OverflowPolicy::DropOldest;
 
-    auto sub = runtime().subscribe<Buttons>("buttons", &on_buttons, opts);
+    auto sub = runtime().subscribe<Buttons>(TopicTraits<Buttons>::name, &on_buttons, opts);
     if (!sub) {
       return i2w::Fail();
     }
 
     sub_ = std::move(sub.value());
+    std::printf("[buttons] ENABLED\n");
     return i2w::Ok();
   }
 
@@ -161,6 +183,13 @@ void RunSubscriber(i2w::Config config, const char* name) {
 }
 
 int main(int argc, char** argv) {
+  // Load config ONCE, before any thread starts. This is what makes the
+  // later concurrent IsEnabled<T>() reads across threads safe.
+  if (!g_logger_config.LoadFromFile("../config/logger_config.json")) {
+    std::printf("failed to load logger config\n");
+    return 1;
+  }
+
   i2w::Config pose_cfg;
   pose_cfg.node_name = "pose_sub";
   pose_cfg.ns = "/demo";

@@ -20,7 +20,7 @@
 #include <cstring>
 
 #include "logger_types.hpp"
-#include "wire_format.hpp"
+#include "chrono_cap/wire_format.hpp"
 
 namespace logger_wire
 {

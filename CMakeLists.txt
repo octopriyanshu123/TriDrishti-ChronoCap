@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(stm LANGUAGES CXX)
+project(chrono_cap LANGUAGES CXX)
 
 set(I2W_SOURCE_DIR
     "${CMAKE_CURRENT_SOURCE_DIR}/../i2w"
@@ -22,6 +22,24 @@ endif()
 add_subdirectory("${I2W_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/i2w")
 add_subdirectory("${CRAWLER_I2W_MSGS_SOURCE_DIR}"
                  "${CMAKE_CURRENT_BINARY_DIR}/crawler_i2w_msgs")
+
+
+# Lib 
+add_library(chrono_cap SHARED
+    src/record_writer.cpp
+    src/record_reader.cpp
+)
+
+target_include_directories(chrono_cap PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(chrono_cap PUBLIC pthread)
+
+target_compile_options(chrono_cap PRIVATE -Wall -Wextra)
+
+find_package(nlohmann_json REQUIRED)
+                 
 
 add_executable(sub_node
   test/sub.cpp
@@ -136,3 +154,5 @@ target_include_directories(robot_logger_replay
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+

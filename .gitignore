@@ -16,6 +16,9 @@ build
 
 *html/
 
+/.vs/
+.vscode/
+
 *.bin
 *.idx
 
