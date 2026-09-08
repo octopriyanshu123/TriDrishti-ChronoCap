@@ -52,7 +52,53 @@ install(TARGETS pub_node
   RUNTIME DESTINATION lib/${PROJECT_NAME})
 
 
-# Test 
+# Logger sub 
+add_executable(logger_sub_node
+  test/logger_sub.cpp
+)
+target_compile_features(logger_sub_node PRIVATE cxx_std_20)
+target_include_directories(logger_sub_node PRIVATE
+  "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(logger_sub_node PRIVATE
+  i2w::i2w
+  crawler_i2w_msgs::crawler_i2w_msgs
+)
+
+install(TARGETS logger_sub_node
+  RUNTIME DESTINATION lib/${PROJECT_NAME})
+
+# recorder
+add_executable(recorder_node
+  test/recorder.cpp
+)
+target_compile_features(recorder_node PRIVATE cxx_std_20)
+target_include_directories(recorder_node PRIVATE
+  "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(recorder_node PRIVATE
+  i2w::i2w
+  crawler_i2w_msgs::crawler_i2w_msgs
+)
+
+install(TARGETS recorder_node
+  RUNTIME DESTINATION lib/${PROJECT_NAME})  
+
+# replayer
+
+add_executable(replayer_node
+  test/replayer.cpp
+)
+target_compile_features(replayer_node PRIVATE cxx_std_20)
+target_include_directories(replayer_node PRIVATE
+  "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(replayer_node PRIVATE
+  i2w::i2w
+  crawler_i2w_msgs::crawler_i2w_msgs
+)
+
+install(TARGETS replayer_node
+  RUNTIME DESTINATION lib/${PROJECT_NAME})  
+
+  # Test 
 
 add_executable(write_test
   test/write.cpp

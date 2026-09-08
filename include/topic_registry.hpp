@@ -1,4 +1,13 @@
 #pragma once
+/// @file topic_registry.hpp
+/// @brief Compile-time mapping: struct type <-> TopicId <-> topic name <-> wire size.
+///
+/// wire_size is the FIXED number of bytes this topic's payload occupies on
+/// disk once encoded field-by-field (see payload_codec.hpp) -- it is NOT
+/// sizeof(T). sizeof(T) can differ across compilers/platforms (struct
+/// padding, alignment, int width), which would silently break replay when
+/// recording on one architecture (e.g. ARM) and replaying on another
+/// (e.g. x86). wire_size is a format constant, fixed forever once chosen.
 
 #include <cstddef>
 #include <cstdint>
@@ -9,7 +18,7 @@ namespace logger_msgs
 {
 
 // Numeric IDs stamped into the log file for each topic/struct type.
-// These values are the on-disk format — do not reorder or reuse an
+// These values are the on-disk format -- do not reorder or reuse an
 // existing value for a different type; only ever append new entries.
 enum class TopicId : std::uint16_t
 {
@@ -27,25 +36,28 @@ struct TopicTraits;
 template <>
 struct TopicTraits<Pose2D> final
 {
-    static constexpr TopicId id           = TopicId::Pose;
-    static constexpr const char* name     = "pose";
-    static constexpr std::size_t wire_size = sizeof(Pose2D);
+    static constexpr TopicId id       = TopicId::Pose;
+    static constexpr const char* name = "pose";
+    // 3 x float, each encoded as 4 bytes -> 12 bytes, always, on any platform.
+    static constexpr std::size_t wire_size = 12;
 };
 
 template <>
 struct TopicTraits<Axis> final
 {
-    static constexpr TopicId id           = TopicId::Axis;
-    static constexpr const char* name     = "axis";
-    static constexpr std::size_t wire_size = sizeof(Axis);
+    static constexpr TopicId id       = TopicId::Axis;
+    static constexpr const char* name = "axis";
+    // uint64 sequence(8) + uint64 timestamp_ns(8) + int32 axes_count(4) = 20 bytes.
+    static constexpr std::size_t wire_size = 20;
 };
 
 template <>
 struct TopicTraits<Buttons> final
 {
-    static constexpr TopicId id           = TopicId::Buttons;
-    static constexpr const char* name     = "buttons";
-    static constexpr std::size_t wire_size = sizeof(Buttons);
+    static constexpr TopicId id       = TopicId::Buttons;
+    static constexpr const char* name = "buttons";
+    // uint64 sequence(8) + uint64 timestamp_ns(8) + int32 buttons_count(4) = 20 bytes.
+    static constexpr std::size_t wire_size = 20;
 };
 
 } // namespace logger_msgs

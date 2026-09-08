@@ -1,7 +1,7 @@
 {
   "topics": [
-    { "name": "pose",    "struct_id": 0, "enabled": true  },
-    { "name": "axis",    "struct_id": 1, "enabled": false },
+    { "name": "pose",    "struct_id": 0, "enabled": true },
+    { "name": "axis",    "struct_id": 1, "enabled": true },
     { "name": "buttons", "struct_id": 2, "enabled": true  }
   ]
 }

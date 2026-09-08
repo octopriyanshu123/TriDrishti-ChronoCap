@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <cstdio>   // fixed: needed for std::fprintf/stderr, was relying on a transitive include
 #include <fstream>
 #include <optional>
 #include <string>
@@ -24,9 +25,9 @@ class LoggerConfig final
 {
 public:
     // Load and parse the JSON file. Returns false on parse failure.
-    
-    
-
+    // Intended to be called exactly once, from main(), before any
+    // subscriber/recorder thread starts -- IsEnabled<T>() below only reads,
+    // so concurrent reads from multiple threads after that point are safe.
     bool LoadFromFile(const std::string& path)
     {
         std::ifstream in(path);
@@ -71,11 +72,11 @@ public:
 
     // Generic check: is topic T enabled, and does the JSON struct_id match
     // the compile-time registry? Logs a warning on mismatch but does not
-    // crash — mismatch just means "treat as disabled" for safety.
+    // crash -- mismatch just means "treat as disabled" for safety.
     template <typename T>
     bool IsEnabled() const
     {
-        const char* name = TopicTraits<T>::name;
+        const char* name = logger_msgs::TopicTraits<T>::name;
         auto it = by_name_.find(name);
         if (it == by_name_.end())
         {
@@ -84,7 +85,7 @@ public:
         }
 
         const TopicConfig& cfg = it->second;
-        const auto expected_id = static_cast<std::uint16_t>(TopicTraits<T>::id);
+        const auto expected_id = static_cast<std::uint16_t>(logger_msgs::TopicTraits<T>::id);
         if (cfg.struct_id != expected_id)
         {
             std::fprintf(stderr,
