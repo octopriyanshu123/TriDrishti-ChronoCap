@@ -1,0 +1,47 @@
+ok Write log in file     
+ok read log file and print on Perfect delay calculted the logger
+ok make the Pub and Sub 
+make the logger Log Sub
+make the Replay Logger Pub 
+ok Some Generic Data Type 
+
+
+Based on the full design discussed so far, here's what's built vs. what's left:
+
+**Done**
+- ✅ Message types (`Axis`, `Buttons`, `Pose2D`) in `logger_types.hpp`
+- ✅ `pub.cpp` — three publishers at different rates (Pose 10Hz, Axis 100Hz, Buttons 20Hz)
+- ✅ `sub.cpp` — three independent subscribers, one callback per topic
+
+**Remaining**
+
+1. **Topic registry** — a compile-time `TopicTraits<T>` mapping (struct type ↔ `TopicId` enum ↔ topic name ↔ size), so the Recorder/Replayer can work generically instead of hand-writing a switch per topic.
+
+2. **Recorder node** — the actual piece that ties `pub.cpp`'s three streams together:
+   - Three typed `subscribe<T>` calls (Pose, Axis, Buttons), each callback funneling into **one shared, mutex-protected writer**
+   - Log record format on disk: `topic_id`, `stamp_ns`, `seq`, `len`, raw payload bytes
+   - Using the sample's `header.stamp_ns` (publish time), not receive time
+   - File writer using `write()` (per the earlier mmap-vs-write() decision) — append-only, ideally with periodic `fsync()`/flush strategy defined
+
+3. **Index/format decisions not yet finalized:**
+   - Do you also want a separate index file (offsets per record) for fast seeking during replay, or just linear scan?
+   - Fixed file size limits / rotation? (relevant at "500GB scale" mentioned earlier)
+   - Any header/versioning at the start of the log file?
+
+4. **Replayer node** — reads the merged log and republishes:
+   - Single thread, single timeline
+   - Sleep computed as `replay_start + (stamp_ns - t0)` (absolute offsets, not cumulative deltas, to avoid drift)
+   - Dispatch via `topic_id` → `publish<T>()` per topic
+   - Uses `mmap()` for reading (per the earlier design decision), since file size is known upfront here
+
+5. **Control channel** — a way to trigger Start/Stop recording and Play on the replayer:
+   - Either a dedicated `record_control` topic with a `Command{Start, Stop, Play}` enum, or a CLI flag/signal
+   - Not yet decided which
+
+6. **Open technical question you haven't answered yet**: does `i2w` support a generic/type-erased `subscribe(raw bytes, size)`, or is `subscribe<T>` strictly compile-time templated? This determines whether the Recorder can be written once generically or needs one hand-written subscription block per topic (as your current subscriber code does — 3 blocks).
+
+7. **Testing/validation** — nothing yet on how you'll verify replay reconstructs the same rates/relative timing as the original recording (e.g. a quick script diffing recorded vs. replayed timestamps).
+
+8. **Build setup** — no `CMakeLists.txt`/build file has come up yet for compiling `pub.cpp`/`sub.cpp` and the upcoming recorder/replayer against the `i2w` framework.
+
+Want to tackle these in order — starting with the topic registry, then the Recorder?

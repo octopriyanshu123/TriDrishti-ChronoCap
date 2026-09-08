@@ -1,0 +1,21 @@
+# i2w cross-host eCAL UDP deployment profile.
+# Use the same registration and transport settings on every host.
+communication_mode: "network"
+
+registration:
+  network:
+    transport_type: "udp"
+    udp:
+      port: 14000
+
+transport_layer:
+  udp:
+    port: 14002
+    join_all_interfaces: false
+    network:
+      group: "239.0.0.1"
+      ttl: 3
+
+publisher:
+  priority_network: ["udp", "tcp"]
+
