@@ -87,4 +87,8 @@ inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexc
     v.buttons_count = static_cast<int>(decode_u32(in + 16));
 }
 
+
+
+
+
 } // namespace logger_wire

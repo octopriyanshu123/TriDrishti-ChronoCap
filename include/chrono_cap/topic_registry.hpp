@@ -25,6 +25,7 @@ enum class TopicId : std::uint16_t
     Pose    = 0,
     Axis    = 1,
     Buttons = 2,
+    Joy = 3, // new enum value for I2wDiffDriveOdometry
 };
 
 // Primary template intentionally left undefined: attempting to use
@@ -58,6 +59,15 @@ struct TopicTraits<Buttons> final
     static constexpr const char* name = "buttons";
     // uint64 sequence(8) + uint64 timestamp_ns(8) + int32 buttons_count(4) = 20 bytes.
     static constexpr std::size_t wire_size = 20;
+};
+
+
+template <>
+struct TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry> final
+{
+    static constexpr TopicId id       = TopicId::Joy; // new enum value
+    static constexpr const char* name = "joy";
+    static constexpr std::size_t wire_size = ;
 };
 
 } // namespace logger_msgs

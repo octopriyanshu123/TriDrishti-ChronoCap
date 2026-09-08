@@ -6,3 +6,7 @@
 #include "logger_types.hpp"
 #include "payload_codec.hpp"
 #include "topic_registry.hpp"
+
+#include "topic_list.hpp"
+#include "generic_recorder.hpp"
+#include "generic_replayer.hpp"

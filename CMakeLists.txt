@@ -43,49 +43,49 @@ target_compile_options(chrono_cap PRIVATE -Wall -Wextra)
 find_package(nlohmann_json REQUIRED)
 
 
-add_executable(sub_node
-  test/sub.cpp
-)
-target_compile_features(sub_node PRIVATE cxx_std_20)
-target_include_directories(sub_node PRIVATE
-  "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(sub_node PRIVATE
-  i2w::i2w
-  crawler_i2w_msgs::crawler_i2w_msgs
-)
+# add_executable(sub_node
+#   test/sub.cpp
+# )
+# target_compile_features(sub_node PRIVATE cxx_std_20)
+# target_include_directories(sub_node PRIVATE
+#   "${CMAKE_CURRENT_SOURCE_DIR}/include")
+# target_link_libraries(sub_node PRIVATE
+#   i2w::i2w
+#   crawler_i2w_msgs::crawler_i2w_msgs
+# )
 
-install(TARGETS sub_node
-  RUNTIME DESTINATION lib/${PROJECT_NAME})
+# install(TARGETS sub_node
+#   RUNTIME DESTINATION lib/${PROJECT_NAME})
 
-add_executable(pub_node
-  test/pub.cpp
-)
-target_compile_features(pub_node PRIVATE cxx_std_20)
-target_include_directories(pub_node PRIVATE
-  "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(pub_node PRIVATE
-  i2w::i2w
-  crawler_i2w_msgs::crawler_i2w_msgs
-)
+# add_executable(pub_node
+#   test/pub.cpp
+# )
+# target_compile_features(pub_node PRIVATE cxx_std_20)
+# target_include_directories(pub_node PRIVATE
+#   "${CMAKE_CURRENT_SOURCE_DIR}/include")
+# target_link_libraries(pub_node PRIVATE
+#   i2w::i2w
+#   crawler_i2w_msgs::crawler_i2w_msgs
+# )
 
-install(TARGETS pub_node
-  RUNTIME DESTINATION lib/${PROJECT_NAME})
+# install(TARGETS pub_node
+#   RUNTIME DESTINATION lib/${PROJECT_NAME})
 
 
 # Logger sub 
-add_executable(logger_sub_node
-  test/logger_sub.cpp
-)
-target_compile_features(logger_sub_node PRIVATE cxx_std_20)
-target_include_directories(logger_sub_node PRIVATE
-  "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(logger_sub_node PRIVATE
-  i2w::i2w
-  crawler_i2w_msgs::crawler_i2w_msgs
-)
+# add_executable(logger_sub_node
+#   test/logger_sub.cpp
+# )
+# target_compile_features(logger_sub_node PRIVATE cxx_std_20)
+# target_include_directories(logger_sub_node PRIVATE
+#   "${CMAKE_CURRENT_SOURCE_DIR}/include")
+# target_link_libraries(logger_sub_node PRIVATE
+#   i2w::i2w
+#   crawler_i2w_msgs::crawler_i2w_msgs
+# )
 
-install(TARGETS logger_sub_node
-  RUNTIME DESTINATION lib/${PROJECT_NAME})
+# install(TARGETS logger_sub_node
+#   RUNTIME DESTINATION lib/${PROJECT_NAME})
 
 # recorder
 add_executable(recorder_node
@@ -120,13 +120,13 @@ install(TARGETS replayer_node
 
   # Test 
 
-add_executable(write_test
-  test/write.cpp
-)
+# add_executable(write_test
+#   test/write.cpp
+# )
 
-add_executable(read_test
-  test/mmapRead.cpp
-)
+# add_executable(read_test
+#   test/mmapRead.cpp
+# )
 
 
 
@@ -158,19 +158,19 @@ add_executable(read_test
 # )
 
 # basic Test 
-add_executable(generate_and_record test/chrono_cap_basic/generate_and_record.cpp)
-target_link_libraries(generate_and_record PRIVATE chrono_cap pthread)
-target_include_directories(generate_and_record PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+# add_executable(generate_and_record test/chrono_cap_basic/generate_and_record.cpp)
+# target_link_libraries(generate_and_record PRIVATE chrono_cap pthread)
+# target_include_directories(generate_and_record PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(replay_and_print test/chrono_cap_basic/replay_and_print.cpp)
-target_link_libraries(replay_and_print PRIVATE chrono_cap pthread)
-target_include_directories(replay_and_print PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+# add_executable(replay_and_print test/chrono_cap_basic/replay_and_print.cpp)
+# target_link_libraries(replay_and_print PRIVATE chrono_cap pthread)
+# target_include_directories(replay_and_print PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 # i2w logger Test 
 # recorder
 add_executable(i2wRecorder_node
-  test/i2wRecorder.cpp
+  src/i2wRecorder.cpp
 )
 target_compile_features(i2wRecorder_node PRIVATE cxx_std_20)
 target_include_directories(i2wRecorder_node PRIVATE
@@ -189,7 +189,7 @@ install(TARGETS i2wRecorder_node
 # replayer
 
 add_executable(i2wReplayer_node
-  test/i2wReplayer.cpp
+  src/i2wReplayer.cpp
 )
 target_compile_features(i2wReplayer_node PRIVATE cxx_std_20)
 target_include_directories(i2wReplayer_node PRIVATE

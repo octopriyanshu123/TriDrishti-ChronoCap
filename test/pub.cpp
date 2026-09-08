@@ -190,6 +190,8 @@ int main()
   buttons_cfg.ns = "/demo";
 
   std::vector<std::thread> threads;
+
+  
   threads.emplace_back(RunPublisher<PosePublisherSystem>, std::move(pose_cfg), "pose");
   threads.emplace_back(RunPublisher<AxisPublisherSystem>, std::move(axis_cfg), "axis");
   threads.emplace_back(RunPublisher<ButtonsPublisherSystem>, std::move(buttons_cfg), "buttons");
