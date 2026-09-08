@@ -26,12 +26,14 @@ add_subdirectory("${CRAWLER_I2W_MSGS_SOURCE_DIR}"
 
 # Lib 
 add_library(chrono_cap SHARED
-    src/record_writer.cpp
-    src/record_reader.cpp
+    src/core/record_writer.cpp
+    src/core/record_reader.cpp
 )
 
 target_include_directories(chrono_cap PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/test
+
 )
 
 target_link_libraries(chrono_cap PUBLIC pthread)
@@ -39,7 +41,7 @@ target_link_libraries(chrono_cap PUBLIC pthread)
 target_compile_options(chrono_cap PRIVATE -Wall -Wextra)
 
 find_package(nlohmann_json REQUIRED)
-                 
+
 
 add_executable(sub_node
   test/sub.cpp
@@ -87,7 +89,7 @@ install(TARGETS logger_sub_node
 
 # recorder
 add_executable(recorder_node
-  test/recorder.cpp
+  src/recorder.cpp
 )
 target_compile_features(recorder_node PRIVATE cxx_std_20)
 target_include_directories(recorder_node PRIVATE
@@ -103,7 +105,7 @@ install(TARGETS recorder_node
 # replayer
 
 add_executable(replayer_node
-  test/replayer.cpp
+  src/replayer.cpp
 )
 target_compile_features(replayer_node PRIVATE cxx_std_20)
 target_include_directories(replayer_node PRIVATE
@@ -128,31 +130,78 @@ add_executable(read_test
 
 
 
-add_executable(replay_log_test
-  test/replay_log.cpp
+# add_executable(replay_log_test
+#   test/replay_log.cpp
+# )
+
+# add_executable(robot_logger
+#     src/log.cpp
+#     src/core/logger.cpp
+# )
+
+# target_include_directories(robot_logger
+#     PRIVATE
+#         ${CMAKE_CURRENT_SOURCE_DIR}/include
+# )
+
+
+
+# add_executable(robot_logger_replay
+#     src/replayLog.cpp
+
+#     src/core/logger.cpp
+# )
+
+# target_include_directories(robot_logger_replay
+#     PRIVATE
+#         ${CMAKE_CURRENT_SOURCE_DIR}/include
+# )
+
+# basic Test 
+add_executable(generate_and_record test/chrono_cap_basic/generate_and_record.cpp)
+target_link_libraries(generate_and_record PRIVATE chrono_cap pthread)
+target_include_directories(generate_and_record PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_executable(replay_and_print test/chrono_cap_basic/replay_and_print.cpp)
+target_link_libraries(replay_and_print PRIVATE chrono_cap pthread)
+target_include_directories(replay_and_print PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+# i2w logger Test 
+# recorder
+add_executable(i2wRecorder_node
+  test/i2wRecorder.cpp
 )
-
-add_executable(robot_logger
-    src/log.cpp
-    src/core/logger.cpp
+target_compile_features(i2wRecorder_node PRIVATE cxx_std_20)
+target_include_directories(i2wRecorder_node PRIVATE
+  "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(i2wRecorder_node PRIVATE
+  i2w::i2w
+  crawler_i2w_msgs::crawler_i2w_msgs
+  chrono_cap
 )
+target_compile_definitions(i2wRecorder_node PRIVATE
+    CONFIG_DIR="${CMAKE_SOURCE_DIR}/config")
 
-target_include_directories(robot_logger
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
+install(TARGETS i2wRecorder_node
+  RUNTIME DESTINATION lib/${PROJECT_NAME})  
+
+# replayer
+
+add_executable(i2wReplayer_node
+  test/i2wReplayer.cpp
 )
+target_compile_features(i2wReplayer_node PRIVATE cxx_std_20)
+target_include_directories(i2wReplayer_node PRIVATE
+  "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_link_libraries(i2wReplayer_node PRIVATE
+  i2w::i2w
+  crawler_i2w_msgs::crawler_i2w_msgs
+  chrono_cap
 
-
-
-add_executable(robot_logger_replay
-    src/replayLog.cpp
-
-    src/core/logger.cpp
 )
+# target_compile_definitions(i2wReplayer_node PRIVATE
+#     CONFIG_DIR="${CMAKE_SOURCE_DIR}/config")
 
-target_include_directories(robot_logger_replay
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-
+    install(TARGETS i2wReplayer_node
+  RUNTIME DESTINATION lib/${PROJECT_NAME})  

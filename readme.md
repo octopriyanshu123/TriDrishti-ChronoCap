@@ -134,31 +134,31 @@ glue would need to change.
 ## 3. Project layout
 
 ```
-project/
+TriDrishti-ChronoCap/
 ├── CMakeLists.txt
-├── lib/                              ← chrono_cap: schema-agnostic engine
-│   ├── CMakeLists.txt
-│   ├── include/i2w_logger/
-│   │   ├── wire_format.hpp           endian-safe container structs
-│   │   ├── mpsc_ring_buffer.hpp      lock-free MPSC ring buffer
-│   │   ├── record_writer.hpp         generic Push(topic_id, stamp, seq, bytes, len)
-│   │   └── record_reader.hpp         generic Run(callback)
-│   └── src/
-│       ├── record_writer.cpp
-│       └── record_reader.cpp
-└── test/                             ← i2w-specific glue + message schema
+├── chrono_cap/                              ← chrono_cap: schema-agnostic engine
     ├── CMakeLists.txt
-    ├── logger_types.hpp              Pose2D, Axis, Buttons struct definitions
-    ├── topic_registry.hpp            TopicId enum + TopicTraits<T> per struct
-    ├── payload_codec.hpp             EncodePayload<T> / DecodePayload<T>
-    ├── logger_config.hpp             JSON-driven per-topic enable/disable
-    ├── config/logger_config.json     the actual enable/disable config file
-    ├── pub.cpp                       plain 3-topic i2w publisher (demo)
-    ├── sub.cpp                       plain 3-topic i2w subscriber (demo)
-    ├── i2wRecorder.cpp                subscribes via i2w, records via chrono_cap
-    ├── i2wReplayer.cpp                replays via chrono_cap, republishes via i2w
-    ├── generate_and_record.cpp       standalone: random data → .bin (NO i2w needed)
-    └── replay_and_print.cpp          standalone: .bin → decoded text file (NO i2w needed)
+    ├── include/chrono_cap/
+    │   ├── wire_format.hpp           endian-safe container structs
+    │   ├── mpsc_ring_buffer.hpp      lock-free MPSC ring buffer
+    │   ├── record_writer.hpp         generic Push(topic_id, stamp, seq, bytes, len)
+    │   └── record_reader.hpp         generic Run(callback)
+    └── src/
+    │   ├── record_writer.cpp
+    │   └── record_reader.cpp
+    └── test/                             ← i2w-specific glue + message schema
+        ├── CMakeLists.txt
+        ├── logger_types.hpp              Pose2D, Axis, Buttons struct definitions
+        ├── topic_registry.hpp            TopicId enum + TopicTraits<T> per struct
+        ├── payload_codec.hpp             EncodePayload<T> / DecodePayload<T>
+        ├── logger_config.hpp             JSON-driven per-topic enable/disable
+        ├── config/logger_config.json     the actual enable/disable config file
+        ├── pub.cpp                       plain 3-topic i2w publisher (demo)
+        ├── sub.cpp                       plain 3-topic i2w subscriber (demo)
+        ├── i2wRecorder.cpp                subscribes via i2w, records via chrono_cap
+        ├── i2wReplayer.cpp                replays via chrono_cap, republishes via i2w
+        ├── generate_and_record.cpp       standalone: random data → .bin (NO i2w needed)
+        └── replay_and_print.cpp          standalone: .bin → decoded text file (NO i2w needed)
 ```
 
 ---
@@ -175,15 +175,15 @@ on ARM replayable correctly on x86, and vice versa.
 
 ```
 ┌───────────────────────────────┐
-│  FILE HEADER (fixed, 32 bytes) │
+│  FILE HEADER (fixed, 32 bytes)│
 ├───────────────────────────────┤
-│  TOPIC METADATA TABLE          │  one entry per enabled topic
-│  (topic_count × 38 bytes)      │
+│  TOPIC METADATA TABLE         │  one entry per enabled topic
+│  (topic_count × 38 bytes)     │
 ├───────────────────────────────┤
-│  RECORD 1                      │  RecordHeader (18B) + payload (fixed per topic)
-│  RECORD 2                      │
-│  RECORD 3                      │
-│  ...                           │
+│  RECORD 1                     │  RecordHeader (18B) + payload (fixed per topic)
+│  RECORD 2                     │
+│  RECORD 3                     │
+│  ...                          │
 └───────────────────────────────┘
 ```
 

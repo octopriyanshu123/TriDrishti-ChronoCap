@@ -13,12 +13,7 @@
 #include <thread>
 
 #include "i2w/impl.hpp"
-#include "chrono_cap/record_writer.hpp"
-
-#include "logger_config.hpp"
-#include "logger_types.hpp"
-#include "payload_codec.hpp"
-#include "topic_registry.hpp"
+#include "chrono_cap/chrono_cap.hpp"
 
 using logger_msgs::Axis;
 using logger_msgs::Buttons;
@@ -150,7 +145,7 @@ private:
 
 int main(int argc, char** argv)
 {
-    if (!g_logger_config.LoadFromFile("../config/logger_config.json"))
+    if (!g_logger_config.LoadFromFile(std::string(CONFIG_DIR) + "/logger_config.json")) 
     {
         std::printf("[i2wRecorder] failed to load logger config\n");
         return 1;

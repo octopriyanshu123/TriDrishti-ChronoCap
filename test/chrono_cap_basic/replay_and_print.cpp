@@ -12,10 +12,6 @@
 
 #include "chrono_cap/chrono_cap.hpp"
 
-#include "logger_types.hpp"
-#include "payload_codec.hpp"
-#include "topic_registry.hpp"
-
 using logger_msgs::Axis;
 using logger_msgs::Buttons;
 using logger_msgs::Pose2D;

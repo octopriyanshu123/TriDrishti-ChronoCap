@@ -13,11 +13,8 @@
 #include <utility>
 
 #include "i2w/impl.hpp"
-#include "chrono_cap/record_reader.hpp"
+#include "chrono_cap/chrono_cap.hpp"
 
-#include "logger_types.hpp"
-#include "payload_codec.hpp"
-#include "topic_registry.hpp"
 
 using logger_msgs::Axis;
 using logger_msgs::Buttons;

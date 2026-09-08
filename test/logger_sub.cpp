@@ -8,6 +8,7 @@
 #include "i2w/impl.hpp"
 #include "chrono_cap/chrono_cap.hpp"
 
+
 using logger_msgs::Axis;
 using logger_msgs::Buttons;
 using logger_msgs::Pose2D;
@@ -184,27 +185,19 @@ void RunSubscriber(i2w::Config config, const char* name) {
 int main(int argc, char** argv) {
   // Load config ONCE, before any thread starts. This is what makes the
   // later concurrent IsEnabled<T>() reads across threads safe.
-  if (!g_logger_config.LoadFromFile("../config/logger_config.json")) {
+  if (!g_logger_config.LoadFromFile("/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/config/logger_config.json")) {
     std::printf("failed to load logger config\n");
     return 1;
   }
 
-  i2w::Config pose_cfg;
-  pose_cfg.node_name = "pose_sub";
-  pose_cfg.ns = "/demo";
-
-  i2w::Config axis_cfg;
-  axis_cfg.node_name = "axis_sub";
-  axis_cfg.ns = "/demo";
-
-  i2w::Config buttons_cfg;
-  buttons_cfg.node_name = "buttons_sub";
-  buttons_cfg.ns = "/demo";
+  i2w::Config logger_sub_cfg;
+  logger_sub_cfg.node_name = "logger_sub";
+  logger_sub_cfg.ns = "/demo";
 
   std::vector<std::thread> threads;
-  threads.emplace_back(RunSubscriber<PoseSubscriberSystem>, std::move(pose_cfg), "pose");
-  threads.emplace_back(RunSubscriber<AxisSubscriberSystem>, std::move(axis_cfg), "axis");
-  threads.emplace_back(RunSubscriber<ButtonsSubscriberSystem>, std::move(buttons_cfg), "buttons");
+  threads.emplace_back(RunSubscriber<PoseSubscriberSystem>, std::move(logger_sub_cfg), "pose");
+  threads.emplace_back(RunSubscriber<AxisSubscriberSystem>, std::move(logger_sub_cfg), "axis");
+  threads.emplace_back(RunSubscriber<ButtonsSubscriberSystem>, std::move(logger_sub_cfg), "buttons");
 
   for (auto& t : threads) {
     t.join();

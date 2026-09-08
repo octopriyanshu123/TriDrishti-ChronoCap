@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "i2w/impl.hpp"
-#include "logger_types.hpp"
+#include "chrono_cap/chrono_cap.hpp"
 
 // ---------------------------------------------------------------------------
 // Pose2D publisher — 10 Hz
