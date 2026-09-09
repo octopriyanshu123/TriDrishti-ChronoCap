@@ -68,6 +68,7 @@ public:
     /// original relative timing (absolute-offset sleeping -- no drift over
     /// a long file).
     void Run(const RecordCallback& callback);
+    void RunFast(const RecordCallback& callback);
 
     const std::vector<ResolvedTopic>& Topics() const { return topics_; }
 
@@ -79,6 +80,7 @@ private:
     std::size_t records_start_offset_{0};
     std::vector<ResolvedTopic> topics_;
     std::unordered_map<std::uint16_t, ResolvedTopic> by_id_;
+        void Walk(const RecordCallback& callback, bool with_timing);  // new
 };
 
 } // namespace chrono_cap
