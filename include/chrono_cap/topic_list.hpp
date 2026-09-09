@@ -11,7 +11,7 @@
 ///   5. Add an entry in logger_config.json.
 /// generic_recorder.hpp / generic_replayer.hpp never need to change.
 
-#include "logger_types.hpp" // Pose2D, Axis, Buttons -- demo/test types
+// #include "logger_types.hpp" // Pose2D, Axis, Buttons -- demo/test types
 
 #include "crawler_i2w_msgs/robot/diff_drive_odometry.hpp"
 #include "crawler_i2w_msgs/dwe_camera.hpp"
@@ -33,10 +33,10 @@ struct TopicList
 /// specialization (topic_registry.hpp) and EncodePayload/DecodePayload
 /// pair (payload_codec.hpp), or this will fail to compile.
 using AllTopics = TopicList<
-    logger_msgs::Pose2D,
-    logger_msgs::Axis,
-    logger_msgs::Buttons,
+    // logger_msgs::Pose2D,
+    // logger_msgs::Axis,
+    // logger_msgs::Buttons,
 
-    crawler_i2w_msgs::I2wDiffDriveOdometry,
-    crawler_i2w_msgs::JoyMsgs,
-    crawler_i2w_msgs::MotorStatus>;
+    // crawler_i2w_msgs::I2wDiffDriveOdometry,
+    crawler_i2w_msgs::JoyMsgs
+    >;

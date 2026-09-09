@@ -505,3 +505,154 @@ A few choices that came up during development, and why:
 | Periodic `fsync()`, not per-record | Per-record `fsync()` would hurt throughput at higher rates; the crash-loss window is bounded by "whatever's still in the ring buffer, undrained" — not by the flush interval — so periodic flushing doesn't meaningfully widen the actual risk window. |
 | New `.bin` per recording session | Keeps sessions independent and simple — a fresh, uniquely-timestamped file every run, no mid-file topic-set changes to reason about. |
 | `lib/` has zero dependency on `i2w` or any message type | Makes the recording/replay engine genuinely reusable in other projects — only the thin glue layer (`i2wRecorder.cpp`/`i2wReplayer.cpp`) and the schema files need to change per project. |
+
+
+## 1. Final, clean file list
+
+```
+project/
+├── CMakeLists.txt
+├── config/
+│   └── logger_config.json              ← enable/disable topics, no recompile
+│
+├── lib/                                 ← chrono_cap: NEVER touch for a new topic
+│   ├── CMakeLists.txt
+│   ├── include/i2w_logger/
+│   │   ├── wire_format.hpp              endian-safe FileHeader/TopicMetaEntry/RecordHeader
+│   │   ├── mpsc_ring_buffer.hpp         lock-free MPSC ring buffer
+│   │   ├── record_writer.hpp/.cpp       generic Push(topic_id, stamp, seq, bytes, len)
+│   │   └── record_reader.hpp/.cpp       generic Run(callback) — mmap sequential replay
+│
+└── test/  (your real project probably calls this "src/")
+    ├── CMakeLists.txt
+    │
+    │  ── CONTROL FILES: touch these 3 whenever a topic is added ──
+    ├── topic_list.hpp                   ★ master switch: which types exist at all
+    ├── topic_registry.hpp               ★ per-type: TopicId + name + wire_size
+    ├── payload_codec.hpp                ★ per-type: Encode/DecodePayload (byte layout)
+    │
+    │  ── GENERIC ENGINE: never touch, works for any TopicList ──
+    ├── generic_recorder.hpp             subscribes to every enabled type in AllTopics
+    ├── generic_replayer.hpp             advertises/dispatches every type in AllTopics
+    ├── logger_config.hpp                loads JSON, IsEnabled<T>() lookup
+    │
+    │  ── ENTRY POINTS: thin, just wire generic engine + i2w together ──
+    ├── i2wRecorder.cpp                  main() for recording
+    ├── i2wReplayer.cpp                  main() for replay
+    │
+    │  ── OPTIONAL / STANDALONE TEST TOOLS: no i2w needed at all ──
+    ├── generate_and_record.cpp
+    ├── replay_and_print.cpp
+    │
+    │  ── LEFTOVER FROM EARLIER DEMOS — safe to delete or keep as reference ──
+    ├── logger_types.hpp                 (Pose2D/Axis/Buttons — only needed if you keep them in AllTopics)
+    ├── pub.cpp                          (demo-only publisher, not part of real pipeline)
+    └── sub.cpp                          (demo-only subscriber, not part of real pipeline)
+```
+
+**What to actually delete:** `recorder.cpp` and `replayer.cpp` (the very first, non-generic, non-library versions from early in this conversation) — they were superseded first by the `chrono_cap` split, then by the generic engine. If you still have those two files sitting in the repo, they're the "leftover from last logging" you're seeing. `pub.cpp`/`sub.cpp` are fine to keep as reference/sanity-check tools, but are not part of the real record/replay pipeline against `crawler_i2w_msgs`.
+
+---
+
+## 2. The 3 control files — what each one actually controls
+
+| File | Answers the question | Example line |
+|---|---|---|
+| **`topic_list.hpp`** | "What message types exist in this build at all?" | `using AllTopics = TopicList<JoyMsgs, MotorStatus, ...>;` |
+| **`topic_registry.hpp`** | "For this type, what's its numeric id, topic name, and fixed byte size on disk?" | `TopicTraits<JoyMsgs>::{id=4, name="joy", wire_size=22}` |
+| **`payload_codec.hpp`** | "For this type, exactly how do its fields turn into those 22 bytes?" | `EncodePayload(JoyMsgs, buf)` / `DecodePayload(buf, JoyMsgs&)` |
+
+`generic_recorder.hpp`/`generic_replayer.hpp` never mention `JoyMsgs` by name anywhere — they only ever write `Traits::id`, `Traits::name`, `Traits::wire_size`, `EncodePayload(sample.value, buf)`. That's the whole point of the split: **adding a topic = editing exactly these 3 files**, nothing else.
+
+---
+
+## 3. Step-by-step: Recording
+
+```
+1. main() in i2wRecorder.cpp:
+   - LoggerConfig::LoadFromFile("logger_config.json")   → reads enabled/disabled per topic
+   - RecordWriter writer;                                 (empty, not opened yet)
+   - RecorderSystem system(config, {&logger_config, &writer});
+   - system.Setup()
+        └─► OnSetup() fold-expands SetupOne<T>() for EVERY T in AllTopics:
+              for JoyMsgs:
+                if !config.IsEnabled<JoyMsgs>()  →  skip, print "disabled"
+                else:
+                  subscribe<JoyMsgs>("joy", callback, opts)
+                  callback = [](sample) {
+                      EncodePayload(sample.value, buf[22])   ← payload_codec.hpp
+                      writer->Push(topic_id=4, stamp_ns, seq, buf, 22)
+                  }
+                  push TopicInfo{id=4, wire_size=22, name="joy"} into enabled_topics_
+
+2. writer.Open("recording_<timestamp>", system.EnabledTopics())
+        └─► writes FileHeader + one TopicMetaEntry per ENABLED topic only
+        └─► starts the dedicated writer thread
+
+3. Runtime:
+   every real /joy message arrives → OnSetup's lambda fires
+     → EncodePayload → writer.Push() → lock-free ring buffer (never blocks)
+   writer thread (separate, continuous):
+     drains ring buffer → RecordHeader{topic_id, stamp_ns, seq} + payload bytes
+     → write() to .bin
+     → periodic fsync()
+
+4. Ctrl+C / shutdown → writer.Close() → final fsync, file done.
+```
+
+---
+
+## 4. Step-by-step: Replay
+
+```
+1. main() in i2wReplayer.cpp <path.bin>:
+   - ReplayerSystem system(config);
+   - system.Setup()   (no-op — nothing known yet, file not opened)
+
+2. RecordReader reader;
+   reader.Open(path, on_topic_hook)
+        └─► mmap()s the file
+        └─► parses FileHeader (magic, version, topic_count)
+        └─► for each TopicMetaEntry found (e.g. topic_id=4, wire_size=22, name="joy"):
+              calls on_topic_hook(ResolvedTopic{4, 22, "joy"})
+                → system.OnTopicFound(topic)
+                     └─► fold-expands TryAdvertise<T>() over ALL T in AllTopics:
+                           for JoyMsgs: if topic.topic_id == TopicTraits<JoyMsgs>::id (4)
+                             check topic.wire_size == TopicTraits<JoyMsgs>::wire_size (22)  ← hard fail if mismatch
+                             advertise<JoyMsgs>("joy") → store in pubs_ tuple
+                           (every other T in the fold just returns immediately — id doesn't match)
+
+3. reader.Run(callback)
+        └─► walks the mmap'd bytes sequentially, record by record:
+              read RecordHeader → topic_id=4 → look up wire_size=22 from metadata table
+              sleep until (replay_start + (stamp_ns - t0))   ← absolute offset, no drift
+              callback(topic_id=4, stamp_ns, seq, payload_ptr, 22)
+                → system.OnRecord(...)
+                     └─► fold-expands DispatchOne<T>() over ALL T in AllTopics:
+                           for JoyMsgs: if topic_id == 4:
+                             JoyMsgs v{};
+                             DecodePayload(payload_ptr, v)     ← payload_codec.hpp, reverses EncodePayload
+                             pubs_.get<Publisher<JoyMsgs>>().publish(v, stamp_ns)
+              advance pointer by (18-byte header + 22-byte payload), repeat
+```
+
+---
+
+## 5. Encode/decode — the actual byte contract, end to end
+
+```
+Live message (JoyMsgs struct, in RAM, may have compiler padding)
+        │  EncodePayload()  — field by field, NEVER memcpy the whole struct
+        ▼
+22 raw bytes, little-endian, no padding, portable ARM ↔ x86
+        │  RecordWriter writes: [RecordHeader: id=4,stamp,seq][these 22 bytes]
+        ▼
+.bin file on disk
+        │  RecordReader mmaps + reads back the same 22 bytes
+        ▼
+        │  DecodePayload()  — field by field, reconstructs the struct
+        ▼
+JoyMsgs struct, in RAM, on possibly a DIFFERENT architecture — values identical to what was recorded
+```
+
+**The one rule that keeps this whole system correct:** every type in `AllTopics` (topic_list.hpp) MUST have exactly one `TopicTraits<T>` (topic_registry.hpp) and exactly one `EncodePayload`/`DecodePayload` pair (payload_codec.hpp) whose byte counts agree with `wire_size`. If any of the 3 is missing or inconsistent, it's a **compile error** (as you just hit) — by design, not a bug, so a mismatch is caught immediately rather than silently corrupting recordings.

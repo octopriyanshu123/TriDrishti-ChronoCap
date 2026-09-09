@@ -1,304 +1,274 @@
 In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:12,
                  from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:19,
                  from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In instantiation of ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&) [with T = crawler_i2w_msgs::I2wDiffDriveOdometry; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:42:26:   required from ‘bool chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::OnTopicFound(const chrono_cap::ResolvedTopic&) [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:40:35:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:66: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
-      |                                                                  ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:40: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   72 |         if (topic.wire_size != Traits::wire_size)
-      |                                        ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:33: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
-      |                                 ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:64: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
-      |                                                                ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:51: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
-      |                                                   ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:81: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
-      |                                                                                 ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:62: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
-      |                                                              ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In instantiation of ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&) [with T = crawler_i2w_msgs::JoyMsgs; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:42:26:   required from ‘bool chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::OnTopicFound(const chrono_cap::ResolvedTopic&) [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:40:35:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:66: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
-      |                                                                  ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:40: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   72 |         if (topic.wire_size != Traits::wire_size)
-      |                                        ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:33: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
-      |                                 ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:64: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
-      |                                                                ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:51: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
-      |                                                   ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:81: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
-      |                                                                                 ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:62: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
-      |                                                              ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In instantiation of ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&) [with T = crawler_i2w_msgs::MotorStatus; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:42:26:   required from ‘bool chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::OnTopicFound(const chrono_cap::ResolvedTopic&) [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:40:35:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:66: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
-      |                                                                  ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:40: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   72 |         if (topic.wire_size != Traits::wire_size)
-      |                                        ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:33: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
-      |                                 ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:64: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
-      |                                                                ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:51: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
-      |                                                   ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:81: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
-      |                                                                                 ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:62: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
-      |                                                              ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In instantiation of ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::DispatchOne(uint16_t, uint64_t, const uint8_t*) [with T = crawler_i2w_msgs::I2wDiffDriveOdometry; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}; uint16_t = short unsigned int; uint64_t = long unsigned int; uint8_t = unsigned char]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:56:25:   required from ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::OnRecord(uint16_t, uint64_t, uint64_t, const uint8_t*, uint32_t) [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}; uint16_t = short unsigned int; uint64_t = long unsigned int; uint8_t = unsigned char; uint32_t = unsigned int]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:54:24:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:98:60: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   98 |         if (topic_id != static_cast<std::uint16_t>(Traits::id))
-      |                                                            ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:103:35: error: no matching function for call to ‘DecodePayload(const uint8_t*&, crawler_i2w_msgs::I2wDiffDriveOdometry&)’
-  103 |         logger_wire::DecodePayload(payload, v);
-      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:7,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:43:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Pose2D&)’
-   43 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Pose2D& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:43:72: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::I2wDiffDriveOdometry’ to ‘logger_msgs::Pose2D&’
-   43 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Pose2D& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~~~^
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:65:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Axis&)’
-   65 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Axis& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:65:70: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::I2wDiffDriveOdometry’ to ‘logger_msgs::Axis&’
-   65 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Axis& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~^
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:83:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Buttons&)’
-   83 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:83:73: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::I2wDiffDriveOdometry’ to ‘logger_msgs::Buttons&’
-   83 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~~~~^
-In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:12,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:19,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In instantiation of ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::DispatchOne(uint16_t, uint64_t, const uint8_t*) [with T = crawler_i2w_msgs::JoyMsgs; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}; uint16_t = short unsigned int; uint64_t = long unsigned int; uint8_t = unsigned char]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:56:25:   required from ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::OnRecord(uint16_t, uint64_t, uint64_t, const uint8_t*, uint32_t) [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}; uint16_t = short unsigned int; uint64_t = long unsigned int; uint8_t = unsigned char; uint32_t = unsigned int]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:54:24:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:98:60: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   98 |         if (topic_id != static_cast<std::uint16_t>(Traits::id))
-      |                                                            ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:103:35: error: no matching function for call to ‘DecodePayload(const uint8_t*&, crawler_i2w_msgs::JoyMsgs&)’
-  103 |         logger_wire::DecodePayload(payload, v);
-      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:7,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:43:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Pose2D&)’
-   43 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Pose2D& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:43:72: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::JoyMsgs’ to ‘logger_msgs::Pose2D&’
-   43 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Pose2D& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~~~^
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:65:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Axis&)’
-   65 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Axis& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:65:70: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::JoyMsgs’ to ‘logger_msgs::Axis&’
-   65 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Axis& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~^
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:83:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Buttons&)’
-   83 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:83:73: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::JoyMsgs’ to ‘logger_msgs::Buttons&’
-   83 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~~~~^
-In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:12,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:19,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In instantiation of ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::DispatchOne(uint16_t, uint64_t, const uint8_t*) [with T = crawler_i2w_msgs::MotorStatus; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}; uint16_t = short unsigned int; uint64_t = long unsigned int; uint8_t = unsigned char]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:56:25:   required from ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::OnRecord(uint16_t, uint64_t, uint64_t, const uint8_t*, uint32_t) [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}; uint16_t = short unsigned int; uint64_t = long unsigned int; uint8_t = unsigned char; uint32_t = unsigned int]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:54:24:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:98:60: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   98 |         if (topic_id != static_cast<std::uint16_t>(Traits::id))
-      |                                                            ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:103:35: error: no matching function for call to ‘DecodePayload(const uint8_t*&, crawler_i2w_msgs::MotorStatus&)’
-  103 |         logger_wire::DecodePayload(payload, v);
-      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
-In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:7,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:43:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Pose2D&)’
-   43 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Pose2D& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:43:72: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::MotorStatus’ to ‘logger_msgs::Pose2D&’
-   43 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Pose2D& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~~~^
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:65:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Axis&)’
-   65 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Axis& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:65:70: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::MotorStatus’ to ‘logger_msgs::Axis&’
-   65 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Axis& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~^
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:83:13: note: candidate: ‘void logger_wire::DecodePayload(const uint8_t*, logger_msgs::Buttons&)’
-   83 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexcept
-      |             ^~~~~~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:83:73: note:   no known conversion for argument 2 from ‘crawler_i2w_msgs::MotorStatus’ to ‘logger_msgs::Buttons&’
-   83 | inline void DecodePayload(const std::uint8_t* in, logger_msgs::Buttons& v) noexcept
-      |                                                   ~~~~~~~~~~~~~~~~~~~~~~^
-In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
                  from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wRecorder.cpp:17:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp: In instantiation of ‘void chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::SetupOne(bool&) [with T = crawler_i2w_msgs::I2wDiffDriveOdometry; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:55:22:   required from ‘i2w::LifecycleResult chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::OnSetup() [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:49:26:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:68:74: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   68 |             std::printf("[recorder] %-16s disabled by config\n", Traits::name);
-      |                                                                          ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:81:21: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   81 |             Traits::name,
-      |                     ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:83:42: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   83 |                 std::uint8_t buf[Traits::wire_size];
-      |                                          ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:83:42: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:85:65: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   85 |                 writer->Push(static_cast<std::uint16_t>(Traits::id), sample.header.stamp_ns,
-      |                                                                 ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:92:75: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-   92 |             std::printf("[recorder] %-16s FAILED to subscribe\n", Traits::name);
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In member function ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:66:42: error: ‘TopicTraits’ in namespace ‘crawler_i2w_msgs’ does not name a template type
+   66 |         using Traits = crawler_i2w_msgs::TopicTraits<T>;
+      |                                          ^~~~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:58: error: ‘Traits’ has not been declared
+   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
+      |                                                          ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:32: error: ‘Traits’ has not been declared
+   72 |         if (topic.wire_size != Traits::wire_size)
+      |                                ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:25: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:56: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                                                        ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:43: error: ‘Traits’ has not been declared
+   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
+      |                                           ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:73: error: ‘Traits’ has not been declared
+   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
+      |                                                                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:54: error: ‘Traits’ has not been declared
+   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
+      |                                                      ^~~~~~
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:12,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:19,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:52:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In member function ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:66:42: error: ‘TopicTraits’ in namespace ‘crawler_i2w_msgs’ does not name a template type
+   66 |         using Traits = crawler_i2w_msgs::TopicTraits<T>;
+      |                                          ^~~~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:58: error: ‘Traits’ has not been declared
+   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
+      |                                                          ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:32: error: ‘Traits’ has not been declared
+   72 |         if (topic.wire_size != Traits::wire_size)
+      |                                ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:25: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:56: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                                                        ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:43: error: ‘Traits’ has not been declared
+   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
+      |                                           ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:73: error: ‘Traits’ has not been declared
+   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
+      |                                                                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:54: error: ‘Traits’ has not been declared
+   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
+      |                                                      ^~~~~~
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:12,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:19,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wReplayer.cpp:15:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In member function ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:66:42: error: ‘TopicTraits’ in namespace ‘crawler_i2w_msgs’ does not name a template type
+   66 |         using Traits = crawler_i2w_msgs::TopicTraits<T>;
+      |                                          ^~~~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:58: error: ‘Traits’ has not been declared
+   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
+      |                                                          ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:32: error: ‘Traits’ has not been declared
+   72 |         if (topic.wire_size != Traits::wire_size)
+      |                                ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:25: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:56: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                                                        ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:43: error: ‘Traits’ has not been declared
+   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
+      |                                           ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:73: error: ‘Traits’ has not been declared
+   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
+      |                                                                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:54: error: ‘Traits’ has not been declared
+   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
+      |                                                      ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In function ‘void {anonymous}::OnPose(const i2w::Sample<logger_msgs::Pose2D>&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:303:43: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  303 |     std::uint8_t buf[TopicTraits<Pose2D>::wire_size];
+      |                                           ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:304:46: error: ‘buf’ was not declared in this scope
+  304 |     logger_wire::EncodePayload(sample.value, buf);
+      |                                              ^~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:305:75: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  305 |     g_ring_buffer.TryPush(static_cast<std::uint16_t>(TopicTraits<Pose2D>::id),
+      |                                                                           ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In function ‘void {anonymous}::OnAxis(const i2w::Sample<logger_msgs::Axis>&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:312:41: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  312 |     std::uint8_t buf[TopicTraits<Axis>::wire_size];
+      |                                         ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:313:46: error: ‘buf’ was not declared in this scope
+  313 |     logger_wire::EncodePayload(sample.value, buf);
+      |                                              ^~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:314:73: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  314 |     g_ring_buffer.TryPush(static_cast<std::uint16_t>(TopicTraits<Axis>::id),
+      |                                                                         ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In function ‘void {anonymous}::OnButtons(const i2w::Sample<logger_msgs::Buttons>&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:321:44: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  321 |     std::uint8_t buf[TopicTraits<Buttons>::wire_size];
+      |                                            ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:322:46: error: ‘buf’ was not declared in this scope
+  322 |     logger_wire::EncodePayload(sample.value, buf);
+      |                                              ^~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:323:76: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  323 |     g_ring_buffer.TryPush(static_cast<std::uint16_t>(TopicTraits<Buttons>::id),
+      |                                                                            ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In member function ‘virtual i2w::LifecycleResult RecorderSystem::OnSetup()’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:357:73: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  357 |             auto sub = runtime().subscribe<Pose2D>(TopicTraits<Pose2D>::name, &OnPose, opts);
+      |                                                                         ^~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:373:69: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  373 |             auto sub = runtime().subscribe<Axis>(TopicTraits<Axis>::name, &OnAxis, opts);
+      |                                                                     ^~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:389:75: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  389 |             auto sub = runtime().subscribe<Buttons>(TopicTraits<Buttons>::name, &OnButtons, opts);
       |                                                                           ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:102:60: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-  102 |         info.topic_id = static_cast<std::uint16_t>(Traits::id);
-      |                                                            ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:103:61: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-  103 |         info.wire_size = static_cast<std::uint32_t>(Traits::wire_size);
-      |                                                             ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:104:29: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-  104 |         info.name = Traits::name;
-      |                             ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:107:59: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’} used in nested name specifier
-  107 |         std::printf("[recorder] %-16s ENABLED\n", Traits::name);
-      |                                                           ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp: In instantiation of ‘void chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::SetupOne(bool&) [with T = crawler_i2w_msgs::JoyMsgs; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:55:22:   required from ‘i2w::LifecycleResult chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::OnSetup() [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:49:26:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:68:74: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   68 |             std::printf("[recorder] %-16s disabled by config\n", Traits::name);
-      |                                                                          ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:81:21: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   81 |             Traits::name,
-      |                     ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:83:42: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   83 |                 std::uint8_t buf[Traits::wire_size];
-      |                                          ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:83:42: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:85:65: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   85 |                 writer->Push(static_cast<std::uint16_t>(Traits::id), sample.header.stamp_ns,
-      |                                                                 ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:92:75: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-   92 |             std::printf("[recorder] %-16s FAILED to subscribe\n", Traits::name);
-      |                                                                           ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:102:60: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-  102 |         info.topic_id = static_cast<std::uint16_t>(Traits::id);
-      |                                                            ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:103:61: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-  103 |         info.wire_size = static_cast<std::uint32_t>(Traits::wire_size);
-      |                                                             ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:104:29: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-  104 |         info.name = Traits::name;
-      |                             ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:107:59: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’} used in nested name specifier
-  107 |         std::printf("[recorder] %-16s ENABLED\n", Traits::name);
-      |                                                           ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp: In instantiation of ‘void chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::SetupOne(bool&) [with T = crawler_i2w_msgs::MotorStatus; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:55:22:   required from ‘i2w::LifecycleResult chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::OnSetup() [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:49:26:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:68:74: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   68 |             std::printf("[recorder] %-16s disabled by config\n", Traits::name);
-      |                                                                          ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:81:21: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   81 |             Traits::name,
-      |                     ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:83:42: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   83 |                 std::uint8_t buf[Traits::wire_size];
-      |                                          ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:83:42: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:85:65: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   85 |                 writer->Push(static_cast<std::uint16_t>(Traits::id), sample.header.stamp_ns,
-      |                                                                 ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:92:75: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-   92 |             std::printf("[recorder] %-16s FAILED to subscribe\n", Traits::name);
-      |                                                                           ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:102:60: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-  102 |         info.topic_id = static_cast<std::uint16_t>(Traits::id);
-      |                                                            ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:103:61: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-  103 |         info.wire_size = static_cast<std::uint32_t>(Traits::wire_size);
-      |                                                             ^~~~~~~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:104:29: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-  104 |         info.name = Traits::name;
-      |                             ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:107:59: error: incomplete type ‘Traits’ {aka ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’} used in nested name specifier
-  107 |         std::printf("[recorder] %-16s ENABLED\n", Traits::name);
-      |                                                           ^~~~
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:12,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:19,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:11,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:45:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp: In member function ‘void chrono_cap::GenericReplayerSystem<TopicList<Ts ...> >::TryAdvertise(const chrono_cap::ResolvedTopic&, bool&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:66:42: error: ‘TopicTraits’ in namespace ‘crawler_i2w_msgs’ does not name a template type
+   66 |         using Traits = crawler_i2w_msgs::TopicTraits<T>;
+      |                                          ^~~~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:67:58: error: ‘Traits’ has not been declared
+   67 |         if (topic.topic_id != static_cast<std::uint16_t>(Traits::id))
+      |                                                          ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:72:32: error: ‘Traits’ has not been declared
+   72 |         if (topic.wire_size != Traits::wire_size)
+      |                                ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:25: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:76:56: error: ‘Traits’ has not been declared
+   76 |                         Traits::name, topic.wire_size, Traits::wire_size);
+      |                                                        ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:82:43: error: ‘Traits’ has not been declared
+   82 |         auto pub = runtime().advertise<T>(Traits::name, opts);
+      |                                           ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:85:73: error: ‘Traits’ has not been declared
+   85 |             std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
+      |                                                                         ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_replayer.hpp:91:54: error: ‘Traits’ has not been declared
+   91 |         std::printf("[replayer] %-16s advertised\n", Traits::name);
+      |                                                      ^~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp: In static member function ‘static bool MappedRecording::CrossCheckKnownTopic(const logger_wire::TopicMetaEntry&)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:178:95: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  178 |             case TopicId::Pose:    expected = static_cast<std::uint32_t>(TopicTraits<Pose2D>::wire_size); break;
+      |                                                                                               ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:179:93: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  179 |             case TopicId::Axis:    expected = static_cast<std::uint32_t>(TopicTraits<Axis>::wire_size); break;
+      |                                                                                             ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:180:96: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  180 |             case TopicId::Buttons: expected = static_cast<std::uint32_t>(TopicTraits<Buttons>::wire_size); break;
+      |                                                                                                ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp: In member function ‘virtual i2w::LifecycleResult ReplayerSystem::OnSetup()’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:343:81: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  343 |                     auto pub = runtime().advertise<Pose2D>(TopicTraits<Pose2D>::name, opts);
+      |                                                                                 ^~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:350:77: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  350 |                     auto pub = runtime().advertise<Axis>(TopicTraits<Axis>::name, opts);
+      |                                                                             ^~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:357:83: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  357 |                     auto pub = runtime().advertise<Buttons>(TopicTraits<Buttons>::name, opts);
+      |                                                                                   ^~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp: In member function ‘void ReplayerSystem::Dispatch(logger_msgs::TopicId, const logger_wire::RecordHeader&, const uint8_t*)’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:380:57: error: invalid initialization of reference of type ‘crawler_i2w_msgs::JoyMsgs&’ from expression of type ‘logger_msgs::Pose2D’
+  380 |                 logger_wire::DecodePayload(payload_ptr, v);
+      |                                                         ^
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:7,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:45:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:110:78: note: in passing argument 2 of ‘void logger_wire::DecodePayload(const uint8_t*, crawler_i2w_msgs::JoyMsgs&)’
+  110 | inline void DecodePayload(const std::uint8_t* in, crawler_i2w_msgs::JoyMsgs& v) noexcept
+      |                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:387:57: error: invalid initialization of reference of type ‘crawler_i2w_msgs::JoyMsgs&’ from expression of type ‘logger_msgs::Axis’
+  387 |                 logger_wire::DecodePayload(payload_ptr, v);
+      |                                                         ^
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:7,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:45:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:110:78: note: in passing argument 2 of ‘void logger_wire::DecodePayload(const uint8_t*, crawler_i2w_msgs::JoyMsgs&)’
+  110 | inline void DecodePayload(const std::uint8_t* in, crawler_i2w_msgs::JoyMsgs& v) noexcept
+      |                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:394:57: error: invalid initialization of reference of type ‘crawler_i2w_msgs::JoyMsgs&’ from expression of type ‘logger_msgs::Buttons’
+  394 |                 logger_wire::DecodePayload(payload_ptr, v);
+      |                                                         ^
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:7,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/replayer.cpp:45:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/payload_codec.hpp:110:78: note: in passing argument 2 of ‘void logger_wire::DecodePayload(const uint8_t*, crawler_i2w_msgs::JoyMsgs&)’
+  110 | inline void DecodePayload(const std::uint8_t* in, crawler_i2w_msgs::JoyMsgs& v) noexcept
+      |                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
 In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:5,
-                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/i2wRecorder.cpp:17:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp: In instantiation of ‘bool logger_cfg::LoggerConfig::IsEnabled() const [with T = crawler_i2w_msgs::I2wDiffDriveOdometry]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:66:39:   required from ‘void chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::SetupOne(bool&) [with T = crawler_i2w_msgs::I2wDiffDriveOdometry; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:55:22:   required from ‘i2w::LifecycleResult chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::OnSetup() [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:49:26:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:79:57: error: incomplete type ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’ used in nested name specifier
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:52:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp: In instantiation of ‘bool logger_cfg::LoggerConfig::IsEnabled() const [with T = logger_msgs::Pose2D]’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:355:46:   required from here
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:79:57: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
    79 |         const char* name = logger_msgs::TopicTraits<T>::name;
       |                                                         ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:88:90: error: incomplete type ‘logger_msgs::TopicTraits<crawler_i2w_msgs::I2wDiffDriveOdometry>’ used in nested name specifier
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:88:90: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
    88 |         const auto expected_id = static_cast<std::uint16_t>(logger_msgs::TopicTraits<T>::id);
       |                                                                                          ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp: In instantiation of ‘bool logger_cfg::LoggerConfig::IsEnabled() const [with T = crawler_i2w_msgs::JoyMsgs]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:66:39:   required from ‘void chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::SetupOne(bool&) [with T = crawler_i2w_msgs::JoyMsgs; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:55:22:   required from ‘i2w::LifecycleResult chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::OnSetup() [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:49:26:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:79:57: error: incomplete type ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’ used in nested name specifier
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In instantiation of ‘void RecorderSystem::AddTopicMeta() [with T = logger_msgs::Pose2D]’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:363:33:   required from here
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:412:68: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  412 |         meta.topic_id = static_cast<std::uint16_t>(TopicTraits<T>::id);
+      |                                                                    ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:415:71: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  415 |         meta.struct_size = static_cast<std::uint32_t>(TopicTraits<T>::wire_size);
+      |                                                                       ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:416:75: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Pose2D>’ used in nested name specifier
+  416 |         std::snprintf(meta.name, sizeof(meta.name), "%s", TopicTraits<T>::name);
+      |                                                                           ^~~~
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:5,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:52:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp: In instantiation of ‘bool logger_cfg::LoggerConfig::IsEnabled() const [with T = logger_msgs::Axis]’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:371:44:   required from here
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:79:57: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
    79 |         const char* name = logger_msgs::TopicTraits<T>::name;
       |                                                         ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:88:90: error: incomplete type ‘logger_msgs::TopicTraits<crawler_i2w_msgs::JoyMsgs>’ used in nested name specifier
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:88:90: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
    88 |         const auto expected_id = static_cast<std::uint16_t>(logger_msgs::TopicTraits<T>::id);
       |                                                                                          ^~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp: In instantiation of ‘bool logger_cfg::LoggerConfig::IsEnabled() const [with T = crawler_i2w_msgs::MotorStatus]’:
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:66:39:   required from ‘void chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::SetupOne(bool&) [with T = crawler_i2w_msgs::MotorStatus; Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:55:22:   required from ‘i2w::LifecycleResult chrono_cap::GenericRecorderSystem<TopicList<Ts ...> >::OnSetup() [with Ts = {logger_msgs::Pose2D, logger_msgs::Axis, logger_msgs::Buttons, crawler_i2w_msgs::I2wDiffDriveOdometry, crawler_i2w_msgs::JoyMsgs, crawler_i2w_msgs::MotorStatus}]’
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/generic_recorder.hpp:49:26:   required from here
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:79:57: error: incomplete type ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’ used in nested name specifier
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In instantiation of ‘void RecorderSystem::AddTopicMeta() [with T = logger_msgs::Axis]’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:379:31:   required from here
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:412:68: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  412 |         meta.topic_id = static_cast<std::uint16_t>(TopicTraits<T>::id);
+      |                                                                    ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:415:71: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  415 |         meta.struct_size = static_cast<std::uint32_t>(TopicTraits<T>::wire_size);
+      |                                                                       ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:416:75: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Axis>’ used in nested name specifier
+  416 |         std::snprintf(meta.name, sizeof(meta.name), "%s", TopicTraits<T>::name);
+      |                                                                           ^~~~
+In file included from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/chrono_cap.hpp:5,
+                 from /home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:52:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp: In instantiation of ‘bool logger_cfg::LoggerConfig::IsEnabled() const [with T = logger_msgs::Buttons]’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:387:47:   required from here
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:79:57: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
    79 |         const char* name = logger_msgs::TopicTraits<T>::name;
       |                                                         ^~~~
-/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:88:90: error: incomplete type ‘logger_msgs::TopicTraits<crawler_i2w_msgs::MotorStatus>’ used in nested name specifier
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/include/chrono_cap/logger_config.hpp:88:90: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
    88 |         const auto expected_id = static_cast<std::uint16_t>(logger_msgs::TopicTraits<T>::id);
       |                                                                                          ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp: In instantiation of ‘void RecorderSystem::AddTopicMeta() [with T = logger_msgs::Buttons]’:
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:395:34:   required from here
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:412:68: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  412 |         meta.topic_id = static_cast<std::uint16_t>(TopicTraits<T>::id);
+      |                                                                    ^~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:415:71: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  415 |         meta.struct_size = static_cast<std::uint32_t>(TopicTraits<T>::wire_size);
+      |                                                                       ^~~~~~~~~
+/home/octobot/Github/TriDrishti-ws/src/TriDrishti-ChronoCap/src/recorder.cpp:416:75: error: incomplete type ‘logger_msgs::TopicTraits<logger_msgs::Buttons>’ used in nested name specifier
+  416 |         std::snprintf(meta.name, sizeof(meta.name), "%s", TopicTraits<T>::name);
+      |                                                                           ^~~~
 gmake[2]: *** [CMakeFiles/i2wReplayer_node.dir/build.make:76: CMakeFiles/i2wReplayer_node.dir/src/i2wReplayer.cpp.o] Error 1
 gmake[1]: *** [CMakeFiles/Makefile2:232: CMakeFiles/i2wReplayer_node.dir/all] Error 2
 gmake[1]: *** Waiting for unfinished jobs....
 gmake[2]: *** [CMakeFiles/i2wRecorder_node.dir/build.make:76: CMakeFiles/i2wRecorder_node.dir/src/i2wRecorder.cpp.o] Error 1
 gmake[1]: *** [CMakeFiles/Makefile2:205: CMakeFiles/i2wRecorder_node.dir/all] Error 2
+gmake[2]: *** [CMakeFiles/replayer_node.dir/build.make:76: CMakeFiles/replayer_node.dir/src/replayer.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:178: CMakeFiles/replayer_node.dir/all] Error 2
+gmake[2]: *** [CMakeFiles/recorder_node.dir/build.make:76: CMakeFiles/recorder_node.dir/src/recorder.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:152: CMakeFiles/recorder_node.dir/all] Error 2
 gmake: *** [Makefile:136: all] Error 2
