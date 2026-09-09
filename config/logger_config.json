@@ -4,7 +4,7 @@
     { "name": "axis",                 "struct_id": 1, "enabled": true },
     { "name": "buttons",              "struct_id": 2, "enabled": true },
     { "name": "diff_drive_odometry",  "struct_id": 3, "enabled": true },
-    { "name": "joy",                  "struct_id": 4, "enabled": true },
-    { "name": "motor_status",         "struct_id": 5, "enabled": true }
+    { "name": "/joy",                 "struct_id": 4, "enabled": true },
+    { "name": "/motor_status",         "struct_id": 5, "enabled": true }
   ]
 }

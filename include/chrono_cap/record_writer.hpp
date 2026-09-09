@@ -20,6 +20,7 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <iostream>
 
 #include "chrono_cap/mpsc_ring_buffer.hpp"
 #include "chrono_cap/wire_format.hpp"
@@ -58,6 +59,7 @@ public:
                            std::chrono::microseconds idle_poll_interval = std::chrono::microseconds(200))
         : flush_interval_(flush_interval), idle_poll_interval_(idle_poll_interval)
     {
+        std::cout<<"[RecordWriter] flush_interval=" << flush_interval_.count() << "ms, idle_poll_interval=" << idle_poll_interval_.count() << "us\n";
     }
 
     ~RecordWriter() { Close(); }

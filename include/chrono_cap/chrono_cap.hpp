@@ -3,7 +3,6 @@
 #include "record_writer.hpp"
 #include "wire_format.hpp"
 #include "logger_config.hpp"
-#include "logger_types.hpp"
 #include "payload_codec.hpp"
 #include "topic_registry.hpp"
 

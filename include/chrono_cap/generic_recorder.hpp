@@ -65,7 +65,7 @@ private:
 
         if (!ctx_.config->IsEnabled<T>())
         {
-            std::printf("[recorder] %-16s disabled by config\n", Traits::name);
+            std::printf("[recorder] %-16s disabled by config\n", Traits::topicName);
             return;
         }
 
@@ -78,7 +78,7 @@ private:
         RecordWriter* writer = ctx_.writer; // captured by value into the lambda below
 
         auto sub = runtime().subscribe<T>(
-            Traits::name,
+            Traits::topicName,
             [writer](const i2w::Sample<T>& sample) {
                 std::uint8_t buf[Traits::wire_size];
                 logger_wire::EncodePayload(sample.value, buf);
@@ -89,7 +89,7 @@ private:
 
         if (!sub)
         {
-            std::printf("[recorder] %-16s FAILED to subscribe\n", Traits::name);
+            std::printf("[recorder] %-16s FAILED to subscribe\n", Traits::topicName);
             ok = false;
             return;
         }
@@ -101,10 +101,10 @@ private:
         TopicInfo info;
         info.topic_id = static_cast<std::uint16_t>(Traits::id);
         info.wire_size = static_cast<std::uint32_t>(Traits::wire_size);
-        info.name = Traits::name;
+        info.name = Traits::topicName;
         enabled_topics_.push_back(info);
 
-        std::printf("[recorder] %-16s ENABLED\n", Traits::name);
+        std::printf("[recorder] %-16s ENABLED\n", Traits::topicName);
     }
 
     RecorderContext ctx_;

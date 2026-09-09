@@ -39,4 +39,5 @@ using AllTopics = TopicList<
 
     // crawler_i2w_msgs::I2wDiffDriveOdometry,
     crawler_i2w_msgs::JoyMsgs
+    // crawler_i2w_msgs::MotorStatus
     >;

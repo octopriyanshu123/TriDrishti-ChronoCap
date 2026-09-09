@@ -12,8 +12,8 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "logger_types.hpp"
 #include "crawler_i2w_msgs/ui/joy.hpp"
+#include "crawler_i2w_msgs/robot/motor_status.hpp"
 
 namespace logger_msgs
 {
@@ -26,7 +26,8 @@ enum class TopicId : std::uint16_t
     Pose    = 0,
     Axis    = 1,
     Buttons = 2,
-    Joy     = 3, 
+    MotorState = 5,
+    Joy     = 4, 
 };
 
 // Primary template intentionally left undefined: attempting to use
@@ -67,11 +68,21 @@ template <>
 struct TopicTraits<crawler_i2w_msgs::JoyMsgs> final
 {
     static constexpr TopicId id       = TopicId::Joy;
-    static constexpr const char* name = "joy";
+    static constexpr const char* topicName = "/joy";
 
     // timestamp(u64,8) + axis0(float,4) + axis2(float,4)
     // + button0,1,3,4,5,6 (bool, 1 byte each x 6) = 22 bytes.
     static constexpr std::size_t wire_size = 22;
 };
+
+// template <>
+// struct TopicTraits<crawler_i2w_msgs::MotorState> final
+// {
+//     static constexpr TopicId id       = TopicId::MotorState; // whatever's next in your enum
+//     static constexpr const char* topicName = "/motor_status";
+//     // timestamp_ns(8) + 2x MotorStatus(36 each) = 80 bytes.
+//     static constexpr std::size_t wire_size = 80;
+// };
+
 } // namespace logger_msgs
 

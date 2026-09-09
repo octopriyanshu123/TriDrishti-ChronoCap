@@ -12,25 +12,60 @@
 #include <ctime>
 #include <string>
 #include <thread>
+#include <atomic>
+#include <csignal>
 
 #include "i2w/impl.hpp"
 #include "chrono_cap/chrono_cap.hpp"
 
-
 namespace
 {
+
+std::atomic<bool> g_running{true};
+
+void SignalHandler(int signal)
+{
+    if (signal == SIGINT)
+    {
+        g_running = false;
+    }
+}
 
 std::string MakeSessionBaseName()
 {
     const std::time_t t = std::time(nullptr);
     std::tm tm_buf{};
     localtime_r(&t, &tm_buf);
+
     char buf[64];
-    std::snprintf(buf, sizeof(buf), "recording_%04d%02d%02d_%02d%02d%02d",
-                  tm_buf.tm_year + 1900, tm_buf.tm_mon + 1, tm_buf.tm_mday,
-                  tm_buf.tm_hour, tm_buf.tm_min, tm_buf.tm_sec);
+
+    std::snprintf(buf, sizeof(buf),
+                  "recording_%04d%02d%02d_%02d%02d%02d",
+                  tm_buf.tm_year + 1900,
+                  tm_buf.tm_mon + 1,
+                  tm_buf.tm_mday,
+                  tm_buf.tm_hour,
+                  tm_buf.tm_min,
+                  tm_buf.tm_sec);
+
     return std::string(buf);
 }
+
+} // namespace
+namespace
+{
+
+// std::string MakeSessionBaseName()
+// {
+//     const std::time_t t = std::time(nullptr);
+//     std::tm tm_buf{};
+//     localtime_r(&t, &tm_buf);
+//     char buf[64];
+//     std::snprintf(buf, sizeof(buf), "recording_%04d%02d%02d_%02d%02d%02d",
+//                   tm_buf.tm_year + 1900, tm_buf.tm_mon + 1, tm_buf.tm_mday,
+//                   tm_buf.tm_hour, tm_buf.tm_min, tm_buf.tm_sec);
+//     return std::string(buf);
+// }
 
 } // namespace
 
@@ -38,6 +73,9 @@ using RecorderSystem = chrono_cap::GenericRecorderSystem<AllTopics>;
 
 int main(int argc, char** argv)
 {
+    
+        std::signal(SIGINT, SignalHandler);
+
     logger_cfg::LoggerConfig config;
     if (!config.LoadFromFile(std::string(CONFIG_DIR) + "/logger_config.json"))
     {
@@ -45,13 +83,16 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    config.PrintSummary();
+
     chrono_cap::RecordWriter writer;
 
     i2w::Config i2w_cfg;
     i2w_cfg.node_name = "i2w_recorder";
-    i2w_cfg.ns = "/demo";
+    i2w_cfg.ns = "";
 
     RecorderSystem system(std::move(i2w_cfg), chrono_cap::RecorderContext{&config, &writer});
+    
     if (!system.Setup().ok)
     {
         std::printf("[i2wRecorder] setup failed\n");
@@ -69,7 +110,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    while (true)
+    while (g_running)
     {
         if (!system.Tick().ok)
         {

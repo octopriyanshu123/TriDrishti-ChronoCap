@@ -73,22 +73,22 @@ private:
         {
             std::fprintf(stderr,
                         "[replayer] %s: wire_size mismatch (file=%u, this build=%zu) -- refusing\n",
-                        Traits::name, topic.wire_size, Traits::wire_size);
+                        Traits::topicName, topic.wire_size, Traits::wire_size);
             return;
         }
 
         i2w::PublisherOptions opts;
         opts.plane = i2w::EndpointPlane::Local;
-        auto pub = runtime().advertise<T>(Traits::name, opts);
+        auto pub = runtime().advertise<T>(Traits::topicName, opts);
         if (!pub)
         {
-            std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::name);
+            std::fprintf(stderr, "[replayer] %s: advertise() failed\n", Traits::topicName);
             return;
         }
 
         std::get<i2w::Publisher<T>>(pubs_) = std::move(pub.value());
         found = true;
-        std::printf("[replayer] %-16s advertised\n", Traits::name);
+        std::printf("[replayer] %-16s advertised\n", Traits::topicName);
     }
 
     template <typename T>

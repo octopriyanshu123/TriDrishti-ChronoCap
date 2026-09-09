@@ -19,7 +19,6 @@
 #include <cstdint>
 #include <cstring>
 
-#include "logger_types.hpp"
 #include "chrono_cap/wire_format.hpp"
 
 namespace logger_wire
@@ -124,6 +123,63 @@ inline void DecodePayload(const std::uint8_t* in, crawler_i2w_msgs::JoyMsgs& v) 
     v.button5 = in[20] != 0;
     v.button6 = in[21] != 0;
 }
+
+// inline void EncodeMotorStatus(const crawler_i2w_msgs::MotorStatus& v, std::uint8_t* out) noexcept
+// {
+//     std::uint64_t bits64;
+//     std::memcpy(&bits64, &v.velocity_rad_s, sizeof(bits64));
+//     encode_u64(out + 0, bits64);
+
+//     encode_u16(out + 8, static_cast<std::uint16_t>(v.fault));
+
+//     out[10] = v.is_brake_released ? 1 : 0;
+
+//     std::memcpy(&bits64, &v.torque_, sizeof(bits64));
+//     encode_u64(out + 11, bits64);
+
+//     std::memcpy(&bits64, &v.temperature_c, sizeof(bits64));
+//     encode_u64(out + 19, bits64);
+
+//     std::memcpy(&bits64, &v.current_a, sizeof(bits64));
+//     encode_u64(out + 27, bits64);
+
+//     out[35] = v.enabled ? 1 : 0;
+// }
+
+// inline void DecodeMotorStatus(const std::uint8_t* in, crawler_i2w_msgs::MotorStatus& v) noexcept
+// {
+//     std::uint64_t bits64 = decode_u64(in + 0);
+//     std::memcpy(&v.velocity_rad_s, &bits64, sizeof(bits64));
+
+//     v.fault = static_cast<crawler_i2w_msgs::ErrorCode>(decode_u16(in + 8));
+
+//     v.is_brake_released = in[10] != 0;
+
+//     bits64 = decode_u64(in + 11);
+//     std::memcpy(&v.torque_, &bits64, sizeof(bits64));
+
+//     bits64 = decode_u64(in + 19);
+//     std::memcpy(&v.temperature_c, &bits64, sizeof(bits64));
+
+//     bits64 = decode_u64(in + 27);
+//     std::memcpy(&v.current_a, &bits64, sizeof(bits64));
+
+//     v.enabled = in[35] != 0;
+// }
+
+// inline void EncodePayload(const crawler_i2w_msgs::MotorState& v, std::uint8_t* out) noexcept
+// {
+//     encode_u64(out + 0, v.timestamp_ns);
+//     EncodeMotorStatus(v.left, out + 8);
+//     EncodeMotorStatus(v.right, out + 8 + 36);
+// }
+
+// inline void DecodePayload(const std::uint8_t* in, crawler_i2w_msgs::MotorState& v) noexcept
+// {
+//     v.timestamp_ns = decode_u64(in + 0);
+//     DecodeMotorStatus(in + 8, v.left);
+//     DecodeMotorStatus(in + 8 + 36, v.right);
+// }
 
 
 

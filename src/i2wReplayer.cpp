@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 
     i2w::Config config;
     config.node_name = "i2w_replayer";
-    config.ns = "/demo";
+    config.ns = "";
 
     ReplayerSystem system(std::move(config));
     if (!system.Setup().ok)
