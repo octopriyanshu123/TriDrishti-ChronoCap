@@ -18,6 +18,17 @@ if(NOT EXISTS "${CRAWLER_I2W_MSGS_SOURCE_DIR}/CMakeLists.txt")
   message(FATAL_ERROR
     "crawler-i2w-msgs source not found at '${CRAWLER_I2W_MSGS_SOURCE_DIR}'")
 endif()
+set(LOGGER_SOURCE_DIR
+    "${CMAKE_CURRENT_SOURCE_DIR}/../../utils/logger"
+)
+if(NOT EXISTS "${LOGGER_SOURCE_DIR}/CMakeLists.txt")
+  message(FATAL_ERROR "Logger source not found at '${LOGGER_SOURCE_DIR}'")
+endif()    
+add_subdirectory("${LOGGER_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/logger")
+
+message(STATUS "========================================")
+message(STATUS "[Logger] Logger source dir  : ${LOGGER_SOURCE_DIR}")
+message(STATUS "========================================")
 
 add_subdirectory("${I2W_SOURCE_DIR}" "${CMAKE_CURRENT_BINARY_DIR}/i2w")
 add_subdirectory("${CRAWLER_I2W_MSGS_SOURCE_DIR}"
@@ -54,6 +65,7 @@ target_link_libraries(i2wRecorder_node PRIVATE
   i2w::i2w
   crawler_i2w_msgs::crawler_i2w_msgs
   chrono_cap
+  logger
 )
 target_compile_definitions(i2wRecorder_node PRIVATE
     CONFIG_DIR="${CMAKE_SOURCE_DIR}/config")
@@ -73,6 +85,7 @@ target_link_libraries(i2wReplayer_node PRIVATE
   i2w::i2w
   crawler_i2w_msgs::crawler_i2w_msgs
   chrono_cap
+  logger
 
 )
 
